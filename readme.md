@@ -1,9 +1,5 @@
 ```bash
-wget https://www.sk-nic.sk/subory/domains.txt
-cat domains.txt | grep '.sk;' > domains_tmp.txt
-rm domains.txt
-cat domains_tmp.txt | cut -f 1 -d ';' > domains.txt
-rm domains_tmp.txt
+curl -s https://www.sk-nic.sk/subory/domains.txt | grep '.sk;' | cut -f 1 -d ';' > domains.txt
 
 # go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 tools/subfinder -dL 0_domains.txt -all -o 1_tmp.txt
