@@ -21,7 +21,7 @@ tools/naabu -l 2_ips.txt -o 3_ports.txt -Pn -tp 1000
 cat 3_ports.txt | cut -f 2 -d : | sort -u
 
 # go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-tools/httpx -l 1_subdomains.txt -o 4_httpx.txt -status-code -location -title -td -p XXX
+tools/httpx -nc -l 1_subdomains.txt -o 4_httpx.txt -status-code -location -title -td -p XXX
 cat 4_httpx.txt | cut -f 1 -d ' ' | sort -u > 4_urls.txt
 
 # go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
