@@ -1,5 +1,9 @@
 ```bash
+# getting current .sk domain list
 curl -s https://www.sk-nic.sk/subory/domains.txt | grep '.sk;' | cut -f 1 -d ';' > domains.txt
+
+# finding all domains with tenant
+tools/azhunt -l domains.txt -tenant -j -o azhunt.txt
 
 # go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 tools/subfinder -dL 0_domains.txt -all -o 1_tmp.txt
