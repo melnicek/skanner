@@ -16,6 +16,7 @@ cat 2_tmp.txt | sort -u > 2_ips_asns.txt ; rm 2_tmp.txt
 cat 2_ips_asns.txt | cut -f 1 -d ' ' > 2_ips.txt
 
 # go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+tools/naabu -l 2_ips.txt -o 3_ports.txt -passive
 tools/naabu -l 2_ips.txt -o 3_ports.txt -Pn -tp 1000 
 
 cat 3_ports.txt | cut -f 2 -d : | sort -u
