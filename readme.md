@@ -31,8 +31,9 @@ cat 5_nuclei_raw.txt | sort -u > 5_nuclei.txt ; rm 7_nuclei_raw.txt
 wpscan --api-token XXX --stealthy --url example.com
 wpscan --api-token XXX --random-user-agent -t 2 --enumerate --url example.com
 
-https://github.com/sqlmapproject/sqlmap
-https://github.com/r0oth3x49/ghauri
+# https://github.com/sqlmapproject/sqlmap
+
+# https://github.com/r0oth3x49/ghauri
 
 # https://github.com/rbsec/dnscan
 python3 dnscan.py -d example.com -w subdomains-100.txt
