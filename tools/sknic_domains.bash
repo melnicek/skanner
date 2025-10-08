@@ -1,16 +1,29 @@
 #!/bin/bash
 
-# Define the input files
-file1="scope.txt"  # File containing lines to search for
-file2="domains.txt"  # File in which to search for matches
+# Check if a domain was provided
+if [ -z "$1" ]; then
+    echo "Usage: $0 <domain>"
+    exit 1
+fi
 
-wget --quiet https://www.sk-nic.sk/subory/domains.txt
+domain="$1"
+file="domains.txt"
 
-# Loop through each line in file1
-while IFS= read -r pattern; do
-    # Use grep to find matches in file2
-    owner=`grep -E "^${pattern};" "$file2" | cut -f 3 -d ';'`
-    grep ";${owner}" "$file2"
-done < "$file1"
+# Download the latest domain list
+wget --quiet https://www.sk-nic.sk/subory/domains.txt -O "$file"
 
-rm domains.txt
+# Extract the owner of the given domain
+owner=$(grep -E "^${domain};" "$file" | cut -f 3 -d ';')
+
+# Check if owner was found
+if [ -z "$owner" ]; then
+    echo "Owner not found for domain: $domain"
+    rm "$file"
+    exit 1
+fi
+
+# Find and print all domains with the same owner
+grep ";${owner}" "$file"
+
+# Clean up
+rm "$file"
